@@ -6,7 +6,23 @@ on:
       - master
 
 jobs:
-  deploy:
+  deploy_ka:
+    name: Deploy Keine Arbeit
+    runs-on: ubuntu-latest
+    steps:
+        name: Cloning repo
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: deploy
+        uses: dokku/github-action@master
+        with:
+          git_remote_url: 'ssh://dokku@app.mistait.com:22/gamecomparsion-ka'
+          ssh_private_key: ${{ secrets.DOKKU_SSH_PRIVATE_KEY }}
+
+  deploy_sp:
+    name: Deploy Soul Pawnshop
     runs-on: ubuntu-latest
     steps:
       - name: Cloning repo
@@ -14,13 +30,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: deploy for "Keine Arbeit"
-        uses: dokku/github-action@master
-        with:
-          git_remote_url: 'ssh://dokku@app.mistait.com:22/gamecomparsion-ka'
-          ssh_private_key: ${{ secrets.DOKKU_SSH_PRIVATE_KEY }}
-
-      - name: deploy for "Soul Pawnshop"
+      - name: deploy
         uses: dokku/github-action@master
         with:
           git_remote_url: 'ssh://dokku@app.mistait.com:22/gamecomparsion-sp'
