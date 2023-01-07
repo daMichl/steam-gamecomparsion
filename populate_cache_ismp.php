@@ -2,6 +2,7 @@
 
 require __DIR__ . '/vendor/autoload.php';
 require __DIR__ . '/Steamapi.php';
+require __DIR__ . '/helper_functions.php';
 
 if (empty(getenv('STEAM_API_KEY'))) {
     throw new \Exception('steam api key was not set!!!');
@@ -9,11 +10,7 @@ if (empty(getenv('STEAM_API_KEY'))) {
 
 $steamapi = new Steamapi(getenv('STEAM_API_KEY'));
 
-if (empty(getenv('USERS_TO_COMPARE'))) {
-    throw new \Exception('users to compare are not set!!!');
-}
-
-$users = json_decode(getenv('USERS_TO_COMPARE') , true);
+$users = getUsersArray();
 
 $accountstogames = [];
 $gameinfos = [];
@@ -28,7 +25,7 @@ foreach ($users as $user => $accountid)
 			$accountstogames[$game['appid']][$user] = $accountid;
 
 			$gameinfos[$game['appid']]['name'] = $game['name'];
-			$gameinfos[$game['appid']]['img'] = $steamapi->imgurl($game['appid'], $game['img_logo_url']);
+			$gameinfos[$game['appid']]['img'] = $steamapi->imgurl($game['appid']);
 		}
 	}
 	else

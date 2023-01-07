@@ -1,8 +1,8 @@
 <?php
 
 use GuzzleHttp\Client;
-use GuzzleHttp\Psr7;
 use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Psr7;
 
 Class Steamapi{
 private $key;
@@ -71,11 +71,11 @@ private $cache_file;
 		return $this->execute('IPlayerService/GetOwnedGames/v1', compact('steamid', 'include_appinfo', 'include_played_free_games'))['games'];
 	}
 
-	public function imgurl($appid, $string)
+	public function imgurl($appid)
 	{
-		if (empty($appid) || empty($string))
+		if (empty($appid))
 			return false;
-		return "http://media.steampowered.com/steamcommunity/public/images/apps/$appid/$string.jpg";
+		return "//cdn.akamai.steamstatic.com/steam/apps/$appid/capsule_184x69.jpg";
 	}
 
 	public function isMultiplayer($appid)
@@ -86,7 +86,7 @@ private $cache_file;
 		//bei fehlschlag von api nochmal probieren
 		do {
 			try {
-			    $response = $this->client->request('GET', 'http://store.steampowered.com/api/appdetails?appids='. $appid);
+			    $response = $this->client->request('GET', 'https://store.steampowered.com/api/appdetails?appids='. $appid);
 			}
 			catch (RequestException $e) {
 				sleep(5);

@@ -1,0 +1,28 @@
+version: "3.5"
+services:
+  app:
+    build:
+      context: .
+      target: development
+    volumes:
+      - .:/app
+
+#  mariadb:
+#      image: linuxserver/mariadb:10.5.16-alpine
+#      environment:
+#          MYSQL_DATABASE: ${DB_DATABASE}
+#          MYSQL_USER: ${DB_USERNAME}
+#          MYSQL_PASSWORD: ${DB_PASSWORD}
+#          MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+#      command:
+#          - mysqld
+#          - --character-set-server=utf8mb4
+#          - --collation-server=utf8mb4_unicode_ci
+#      volumes:
+#          - mariadb:/config
+
+#  redis:
+#      image: redis:alpine
+
+#volumes:
+#  mariadb:
