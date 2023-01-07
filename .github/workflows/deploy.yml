@@ -15,7 +15,8 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: deploy
+
+        name: deploy
         uses: dokku/github-action@master
         with:
           git_remote_url: 'ssh://dokku@app.mistait.com:22/gamecomparsion-ka'
