@@ -10,13 +10,13 @@ jobs:
     name: Deploy Keine Arbeit
     runs-on: ubuntu-latest
     steps:
-        name: Cloning repo
+      - name: Cloning repo
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
 
 
-        name: deploy
+      - name: deploy
         uses: dokku/github-action@master
         with:
           git_remote_url: 'ssh://dokku@app.mistait.com:22/gamecomparsion-ka'
