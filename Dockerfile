@@ -23,4 +23,6 @@ WORKDIR /app
 COPY --chown=application:application . /app
 RUN composer install --no-progress
 
+COPY entrypoint.sh . /opt/docker/bin/
+
 EXPOSE 80

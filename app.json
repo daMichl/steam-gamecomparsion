@@ -1,5 +1,0 @@
-{
-  "scripts": {
-    "postdeploy": "php populate_cache_ismp.php"
-  }
-}
