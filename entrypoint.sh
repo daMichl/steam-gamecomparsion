@@ -43,6 +43,6 @@ fi
 ## COMMAND
 #############################
 
-su - application -c "php /app/populate_cache_ismp.php"
+php /app/populate_cache_ismp.php
 
 runEntrypoints "$@"
